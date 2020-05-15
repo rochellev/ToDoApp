@@ -16,6 +16,7 @@ function App() {
       isCompleted: 'false',
     }
   ])
+  initialize 
 
   return(
     <div className="app">
