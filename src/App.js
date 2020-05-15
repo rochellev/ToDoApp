@@ -1,24 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Pup <code>src/App.js</code> and save be a pup.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [todos, setTodos] = useState([
+    {content: 'put away laundry',
+    isCompleted: true,
+    },
+    {
+      content: 'vacuum rug',
+      isCompleted: false,
+    },
+    {
+      content: 'do dishes',
+      isCompleted: 'false',
+    }
+  ])
+
+  return(
+    <div className="app">
+      <div className="header">
+        <img src={logo} className="logo" alt="logo"/>
+      </div>
+      <form className="todo-list">
+        <ul>
+          {todos.map((todoItem, i) => (
+               <div className="todo">
+               <div className="checkbox" />
+                 <input type="text" value={todoItem.content}/>
+             </div>
+          ))}
+       
+        </ul>
+      </form>
     </div>
   );
 }
