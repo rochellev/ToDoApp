@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
+import ListItem from './ListItem';
+import CheckBox from './ListItem';
 
 function List(){
   const [todos, setTodos] = useState([
@@ -50,14 +52,12 @@ function List(){
       document.forms[0].elements[i + 1].focus();
       }, 0);
   }
-
-  // update todo list state
+ 
   function updateTodoAtIndex (e, i){
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
     console.log("updated item id: " + newTodos[i].id);
     setTodos(newTodos);
-
   }
 
   function removeTodoAtIndex(i){
@@ -78,18 +78,9 @@ function List(){
     <form className="todo-list">
     <ul>
       {todos.map((todoItem, i) => (
-        <div className={`todo ${todoItem.isCompleted && 'todo-is-completed'}`}>
-          <div className={'checkbox'} onClick={ () => toggleTodoCompleteAtIndex(i)}> 
-            {todoItem.isCompleted && (<span>&#x2714;</span>)}
-          </div>
-          <input
-            key={todoItem.id} 
-            type="text" 
-            value={todoItem.content}
-            onKeyDown={e => handleKeyDown(e, i)}
-            onChange={e => updateTodoAtIndex(e, i)}
-          />
-         </div>
+        <ListItem key={todoItem.id} content={todoItem.content} isCompleted={todoItem.isCompleted} onKeyDown={e => handleKeyDown(e, i)}
+        onChange={e => updateTodoAtIndex(e, i)}  />
+
       ))}
    
     </ul>
