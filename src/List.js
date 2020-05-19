@@ -6,7 +6,7 @@ import CheckBox from './ListItem';
 function List(){
   const [todos, setTodos] = useState([
     {content: 'put away laundry',
-    isCompleted: true,
+    isCompleted: false,
     id: 1,
     },
     {
@@ -16,7 +16,7 @@ function List(){
     },
     {
       content: 'do dishes',
-      isCompleted: 'false',
+      isCompleted: false,
       id: 3,
     }
   ]);
@@ -78,16 +78,22 @@ function List(){
     <form className="todo-list">
     <ul>
       {todos.map((todoItem, i) => (
-        <ListItem key={todoItem.id} content={todoItem.content} isCompleted={todoItem.isCompleted} onKeyDown={e => handleKeyDown(e, i)}
-        onChange={e => updateTodoAtIndex(e, i)}  />
+        <div>
+          
+          <ListItem 
+            key={todoItem.id}
+            content={todoItem.content}
+            isCompleted={todoItem.isCompleted}
+            onKeyDown={e => handleKeyDown(e, i)}
+            onChange={e => updateTodoAtIndex(e, i)}  />
+        </div>
+        
 
       ))}
    
     </ul>
   </form>
   );
-
-
 }
 
 export default List;
