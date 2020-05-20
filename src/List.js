@@ -79,13 +79,13 @@ function List(){
     <ul>
       {todos.map((todoItem, i) => (
         <div>
-          
           <ListItem 
             key={todoItem.id}
             content={todoItem.content}
             isCompleted={todoItem.isCompleted}
             onKeyDown={e => handleKeyDown(e, i)}
-            onChange={e => updateTodoAtIndex(e, i)}  />
+            onChange={e => updateTodoAtIndex(e, i)}
+            onClick={e => toggleTodoCompleteAtIndex(i)}  />
         </div>
         
 
