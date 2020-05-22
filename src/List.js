@@ -78,7 +78,7 @@ function List(){
     <form className="todo-list">
     <ul>
       {todos.map((todoItem, i) => (
-        <div>
+        <div style={flex}>
           <ListItem 
             key={todoItem.id}
             content={todoItem.content}
