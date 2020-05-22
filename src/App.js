@@ -12,8 +12,8 @@ function App() {
       <div className="header">
         <img src={logo} className="logo" alt="logo"/>
       </div>
-      <AboutMe />
       <List />
+      <AboutMe />
     </div>
   );
 }

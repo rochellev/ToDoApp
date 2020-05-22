@@ -20,6 +20,11 @@ body {
   pointer-events: none;
 }
 
+.about {
+  display: flex;
+  color: white;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
