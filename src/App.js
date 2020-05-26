@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import List from './List';
+import AboutMe from './AboutMe';
 
 function App() {
   // when update todos, you need to get copy, modify, then return in setTodos
@@ -12,6 +13,7 @@ function App() {
         <img src={logo} className="logo" alt="logo"/>
       </div>
       <List />
+      <AboutMe />
     </div>
   );
 }
