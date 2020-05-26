@@ -16,6 +16,11 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * CSS
 * git
 
+## Bugs/In progress
+* deleting first item on list crashes app!
+* color of link not very visible 
+* use local storage to display users todos
+
 ## About Me, Rochelle Crain
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
 
