@@ -3,25 +3,35 @@ import './App.css';
 import ListItem from './ListItem';
 import CheckBox from './ListItem';
 
-function List(){
-  const [todos, setTodos] = useState([
-    {content: 'put away laundry',
-    isCompleted: false,
-    id: 1,
-    },
-    {
-      content: 'vacuum rug',
-      isCompleted: false,
-      id: 2,
-    },
-    {
-      content: 'do dishes',
-      isCompleted: false,
-      id: 3,
-    }
-  ]);
+// {content: 'put away laundry',
+//     isCompleted: false,
+//     id: 1,
+//     },
+//     {
+//       content: 'vacuum rug',
+//       isCompleted: false,
+//       id: 2,
+//     },
+//     {
+//       content: 'do dishes',
+//       isCompleted: false,
+//       id: 3,
+//     }
 
-  const [todoCount, setTodoCount] = useState(3);
+function List(){
+  // want to hydrate todos with localStorage
+  const [todos, setTodos] = useState(() => {
+    const restoredList = [];
+    restoredList.push({content: "vacuum rug", isCompleted: false, id: 0})
+    const keys = Object.keys(localStorage);
+    for(var i = 0; i < keys.length; i++){
+      var key = keys[i];
+      restoredList.push(JSON.parse(localStorage.getItem(key)));
+    }
+    return restoredList;
+  });
+
+  const [todoCount, setTodoCount] = useState(localStorage.length);
 
   function handleKeyDown(e, i){
     if(e.key === 'Enter'){
