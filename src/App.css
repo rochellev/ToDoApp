@@ -4,7 +4,9 @@ body {
 }
 
 .app {
-  padding-top: 10rem;
+  padding-top: 5vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .header {
@@ -77,7 +79,6 @@ ul {
   list-style: none;
   padding: 0;
   line-height: 2rem;
-  width: 500px;
 }
 
 input {
