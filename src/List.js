@@ -47,6 +47,9 @@ function List(){
 
     setTodoCount(newTodoCount);
     setTodos(newTodos);
+    newTodos.forEach(item => {
+      localStorage.setItem(JSON.stringify(item.id), JSON.stringify(item));
+    });
     // wait for state to finish update before focusing on new rendered input
     setTimeout(() => {
       document.forms[0].elements[i + 1].focus();
@@ -56,7 +59,6 @@ function List(){
   function updateTodoAtIndex (e, i){
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
-    console.log("updated item id: " + newTodos[i].id);
     setTodos(newTodos);
   }
 
