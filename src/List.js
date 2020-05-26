@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import ListItem from './ListItem';
 import CheckBox from './ListItem';
@@ -31,8 +32,6 @@ function List(){
     return restoredList;
   });
 
-  const [todoCount, setTodoCount] = useState(localStorage.length);
-
   function handleKeyDown(e, i){
     if(e.key === 'Enter'){
       createTodoAtIndex(e, i);
@@ -45,17 +44,13 @@ function List(){
   // add empty todo item to todos
   function createTodoAtIndex(e,i){
     // copy because state not be directly mutated
-    var newTodoCount = todoCount;
-    newTodoCount+=1;
-
     const newTodos = [...todos];
     newTodos.splice(i+1, 0, {
       content: '',
       isCompleted: false,
-      id: newTodoCount,
+      id: uuidv4(),
     });
 
-    setTodoCount(newTodoCount);
     setTodos(newTodos);
     newTodos.forEach(item => {
       localStorage.setItem(JSON.stringify(item.id), JSON.stringify(item));
@@ -99,10 +94,7 @@ function List(){
             onChange={e => updateTodoAtIndex(e, i)}
             onClick={e => toggleTodoCompleteAtIndex(i)}  />
         </div>
-        
-
       ))}
-   
     </ul>
   </form>
   );
