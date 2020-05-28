@@ -2,36 +2,24 @@ import React, {useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import ListItem from './ListItem';
-import CheckBox from './ListItem';
-
-// {content: 'put away laundry',
-//     isCompleted: false,
-//     id: 1,
-//     },
-//     {
-//       content: 'vacuum rug',
-//       isCompleted: false,
-//       id: 2,
-//     },
-//     {
-//       content: 'do dishes',
-//       isCompleted: false,
-//       id: 3,
-//     }
 
 function List(){
-  // want to hydrate todos with localStorage
+  // hydrate todos state with localStorage when refresh app
   const [todos, setTodos] = useState(() => {
     const restoredList = [];
-    restoredList.push({content: "vacuum rug", isCompleted: false, id: 0})
     const keys = Object.keys(localStorage);
+    if(keys.length === 0){ 
+      restoredList.push({content: " ", isCompleted: false, id: uuidv4()});
+    }
     for(var i = 0; i < keys.length; i++){
       var key = keys[i];
       restoredList.push(JSON.parse(localStorage.getItem(key)));
     }
+    console.log("calling useState");
     return restoredList;
   });
 
+  // event handlers
   function handleKeyDown(e, i){
     if(e.key === 'Enter'){
       createTodoAtIndex(e, i);

@@ -22,6 +22,8 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * deleting a todo does not delete in local storage
 * storage does only updates after hit enter -- want to update as type (i think)
 * the tab label still using default -- change 
+* refactor to use the useEffect() hook
+* re-orders tasks when refresh page
 
 ## About Me, Rochelle Crain
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
