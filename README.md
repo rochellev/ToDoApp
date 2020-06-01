@@ -18,13 +18,12 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 
 ## Bugs/In progress
 * storage does only updates after hit enter
-   * **fix**: useEffect for adding items to local storage, called whenever todos change so local storage updates after each render
+   * **fix**: ```useEffect``` for adding items to local storage, called whenever todos change so local storage updates after each render
 * deleting first item on list crashes app!
 * color of link not very visible 
 * deleting a todo does not delete in local storage
-
+    * **fix**: add code to remove local storage item using the id for the key, had to strigify the id
 * the tab label still using default -- change 
-* re-orders tasks when refresh page
 
 ## About Me, Rochelle Crain
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)

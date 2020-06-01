@@ -62,11 +62,14 @@ function List() {
 
   function removeTodoAtIndex(i) {
     if (i === 0 && todos.length === 1) return;
+    console.log(`typeof= ${typeof todos[i].id}`)
+    localStorage.removeItem(JSON.stringify(todos[i].id));
     setTodos(todos =>
       todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
     );
+
     setTimeout(() => {
-      document.forms[0].elements[i - 1].focus();
+      document.forms[0].elements[i-1].focus();
     }, 0);
   }
 
@@ -80,7 +83,7 @@ function List() {
     <form className="todo-list">
       <ul>
         {todos.map((todoItem, i) => (
-          <div>
+        
             <ListItem
               key={todoItem.id}
               content={todoItem.content}
@@ -89,7 +92,7 @@ function List() {
               onChange={e => updateTodoAtIndex(e, i)}
               onClick={e => toggleTodoCompleteAtIndex(i)}
             />
-          </div>
+        
         ))}
       </ul>
     </form>
