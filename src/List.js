@@ -13,7 +13,7 @@ function List() {
     const keys = Object.keys(localStorage);
     console.log(`keys.length = ${keys.length}`);
     if (keys.length === 0) {
-      restoredList.push({ content: " ", isCompleted: false, id: uuidv4() });
+      restoredList.push({ content: "", isCompleted: false, id: uuidv4() });
     }
       for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
@@ -67,9 +67,9 @@ function List() {
     setTodos(todos =>
       todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
     );
-
+    
     setTimeout(() => {
-      document.forms[0].elements[i-1].focus();
+      (i === 0) ? document.forms[0].elements[0].focus() : document.forms[0].elements[i-1].focus();
     }, 0);
   }
 
