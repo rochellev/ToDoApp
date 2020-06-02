@@ -26,6 +26,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
     * **fix**: add code to remove local storage item using the id for the key, had to strigify the id
 * the tab label still using default -- change
 * after page refresh, the item order is not saved
+  * **fix**: refactor data storage, "todoList" is the key for an array of todo item objects. this array is updated in the effect function of todos
 
 ## About Me, Rochelle Crain
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
