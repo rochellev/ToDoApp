@@ -1,5 +1,12 @@
+:root {
+  --space-cadet: #343347;
+  --alabaster: #E8E0D9;
+  --laurel-green: #C2CFB2;
+  --lavender-blush: #EFE6EA;
+  --cool-grey: #9595B2;
+}
 body {
-  background-color: #282c34;
+  background-color: var(--space-cadet);
   min-height: 100vh;
 }
 
@@ -22,9 +29,7 @@ body {
   pointer-events: none;
 }
 
-.link {
-  color: white;
-}
+
 
 .todo-list {
   display: flex;
@@ -43,11 +48,12 @@ body {
 
 .todo-is-completed .checkbox {
   color: #000;
-  background: #fff;
+  background: var(--cool-grey);
 }
 
 .todo-is-completed input {
   text-decoration: line-through;
+  color: var(--cool-grey);
 }
 
 .checkbox {
@@ -61,7 +67,7 @@ body {
   justify-content: center;
   align-items: center;
   transition: background-color .2s ease-in-out;
-  border: 1px solid #fff;
+  border: 1px solid var(--cool-grey);
 }
 
 .checkbox:hover {
@@ -83,7 +89,7 @@ ul {
 input {
   border: none;
   background: transparent;
-  color: white;
+  color: var(--lavender-blush);
   font-size: 1.4rem;
   outline: none;
   width: 100%;
