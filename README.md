@@ -14,6 +14,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * AWS
 * HTML
 * CSS
+* HTML Web Storage API
 * git
 
 ## Bugs/In progress
