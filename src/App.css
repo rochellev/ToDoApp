@@ -22,8 +22,7 @@ body {
   pointer-events: none;
 }
 
-.about {
-  display: flex;
+.link {
   color: white;
 }
 
