@@ -1,5 +1,9 @@
+:root {
+  --todo-bg-color: #193819;
+  --todo-text-color: #e3e7d3;
+}
 body {
-  background-color: #282c34;
+  background-color: var(--todo-bg-color);
   min-height: 100vh;
 }
 
@@ -83,7 +87,7 @@ ul {
 input {
   border: none;
   background: transparent;
-  color: white;
+  color: var(--todo-text-color);
   font-size: 1.4rem;
   outline: none;
   width: 100%;
