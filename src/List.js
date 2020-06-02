@@ -4,44 +4,21 @@ import "./App.css";
 import ListItem from "./ListItem";
 
 function List() {
-  const KEY_LIST_KEY = "keyOrderedList";
-  // keep order of todo list
 
   // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
-    const restoredList = [];
-    const keys = Object.keys(localStorage);
-    if (keys.length === 0) {
-      const newId = uuidv4();
-      const keyArray = [newId];
-      restoredList.push({ content: "", isCompleted: false, id: newId });
-     
-    }
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
-      if (key != KEY_LIST_KEY) {
-        restoredList.push(JSON.parse(localStorage.getItem(key)));
-      }
+    var restoredList = JSON.parse(localStorage.getItem("todoList"));
+    
+    if (!restoredList) {
+      restoredList = [{ content: "", isCompleted: false, id: uuidv4() }]
     }
     return restoredList;
   });
 
-  const [keyOrderedList, setKeyOrderedList] = useState(() => {
-    const newKeyOrderedList = [];
-    newKeyOrderedList.push(todos[0].id);
-    return newKeyOrderedList;
-  });
-
+  // save todos in one object
   useEffect(() => {
-    todos.forEach(item => {
-      localStorage.setItem(JSON.stringify(item.id), JSON.stringify(item));
-    });
+    localStorage.setItem("todoList", JSON.stringify(todos));
   }, [todos]);
-
-  useEffect(() => {
-    localStorage.setItem(KEY_LIST_KEY, JSON.stringify(keyOrderedList))
-  })
-
 
   // event handlers
   function handleKeyDown(e, i) {
@@ -55,13 +32,11 @@ function List() {
   }
   // add empty todo item to todos
   function createTodoAtIndex(e, i) {
-    // copy because state not be directly mutated
-    const newId = uuidv4();
     const newTodos = [...todos];
     newTodos.splice(i + 1, 0, {
       content: "",
       isCompleted: false,
-      id: newId
+      id: uuidv4()
     });
   
     setTodos(newTodos);
@@ -79,8 +54,6 @@ function List() {
 
   function removeTodoAtIndex(i) {
     if (i === 0 && todos.length === 1) return;
-    console.log(`typeof= ${typeof todos[i].id}`);
-    localStorage.removeItem(JSON.stringify(todos[i].id));
     setTodos(todos =>
       todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
     );
