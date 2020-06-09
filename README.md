@@ -32,3 +32,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Icons
+Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
