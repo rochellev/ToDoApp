@@ -34,5 +34,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-## Icons
-Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+## Icon Credit
+Delete Icon made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
+Drag Icon made by <a href="https://www.flaticon.com/free-icon/menu_2089792" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
