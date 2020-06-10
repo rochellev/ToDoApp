@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import List from './List';
 import AboutMe from './AboutMe';
-import deleteIcon from "./delete-icon.png";
 
 function App() {
   // when update todos, you need to get copy, modify, then return in setTodos

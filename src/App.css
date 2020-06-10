@@ -80,9 +80,13 @@ body {
 }
 
 .delete-button {
-  height: 18px;
-  width: 18px;
+  height: 12px;
+  width: 12px;
   display: flex;
+}
+
+.drag-button {
+  padding-right: 8px;
 }
 
 ul {
