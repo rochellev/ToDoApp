@@ -53,10 +53,21 @@ function List() {
   }
 
   function removeTodoAtIndex(i) {
-    if (i === 0 && todos.length === 1) return;
+    //  if (i === 0 && todos.length === 1) return;
+    if (i === 0 && todos.length === 1){
+     const newTodos = [...todos];
+     newTodos.splice(0,1, {
+      content: "",
+      isCompleted: false,
+      id: uuidv4()
+     })
+    setTodos(newTodos);
+
+    }else{
     setTodos(todos =>
       todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
     );
+    }
 
     setTimeout(() => {
       i === 0
@@ -82,6 +93,7 @@ function List() {
             onKeyDown={e => handleKeyDown(e, i)}
             onChange={e => updateTodoAtIndex(e, i)}
             onClick={e => toggleTodoCompleteAtIndex(i)}
+            removeTodoAtIndex={e => removeTodoAtIndex(i)}
           />
         ))}
       </ul>

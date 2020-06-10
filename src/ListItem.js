@@ -6,7 +6,7 @@ import dragIcon from "./drag-dots-icon.png";
 function ListItem(props) {
   return (
     <div className={`todo ${props.isCompleted && "todo-is-completed"}`}>
-      <img className={"delete-button drag-button"} src={dragIcon} alt={"drag button"}/>
+      <img className={"delete-button drag-button"} src={dragIcon} alt={"drag button"} />
       <div className={"checkbox"} onClick={props.onClick}>
         {props.isCompleted && <span>&#x2714;</span>}
       </div>
@@ -17,7 +17,7 @@ function ListItem(props) {
         onChange={props.onChange}
       />
         <div >
-       <img className={"delete-button"} src={deleteIcon} alt={"delete button"}/>
+       <img className={"delete-button"} src={deleteIcon} alt={"delete button"} onClick={props.removeTodoAtIndex}/>
       </div>
     </div>
   );

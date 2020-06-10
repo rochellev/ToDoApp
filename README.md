@@ -27,13 +27,15 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * after page refresh, the item order is not saved
   * **fix**: refactor data storage, "todoList" is the key for an array of todo item objects. this array is updated in the effect function of todos
 
-## About Me, Rochelle Crain
+* make so delete button only shows when focused on the item
+
+## About Me
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
 
+
+## Credits
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-## Icon Credit
 Delete "X" Icon made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 Draggin Dots Icon made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
