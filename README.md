@@ -17,7 +17,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * HTML Web Storage API
 * git
 
-## Bugs/In progress
+## Bugs
 * storage does only updates after hit enter
    * **fix**: ```useEffect``` for adding items to local storage, called whenever todos change so local storage updates after each render
 * deleting first item on list crashes app!
@@ -27,7 +27,9 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * after page refresh, the item order is not saved
   * **fix**: refactor data storage, "todoList" is the key for an array of todo item objects. this array is updated in the effect function of todos
 
-* make so delete button only shows when focused on the item
+## In Development
+* delete button only shows when focused on the item
+* draggable list items, users can reorder
 
 ## About Me
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
