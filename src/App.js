@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import List from './List';
@@ -24,7 +24,16 @@ function App() {
     'https://media.giphy.com/media/xT1XGYy9NPhWRPp4pq/giphy.gif',
   ]);
 // splice the order to update todos
-  const onSortEnd = ({oldIndex, newIndex}) => setGifs(arrayMove(gifs, oldIndex, newIndex));
+  // const onSortEnd = ({oldIndex, newIndex}) => setGifs(arrayMove(gifs, oldIndex, newIndex));
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    var tempGifs = [...gifs];
+    tempGifs = arrayMove(gifs, oldIndex, newIndex);
+    setGifs(tempGifs);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("gifs", JSON.stringify(gifs));
+  }, [gifs]);
 
   return(
     <div className="app">
