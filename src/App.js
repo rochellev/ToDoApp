@@ -29,7 +29,6 @@ function App() {
       <div className="header">
         <img src={logo} className="logo" alt="logo" />
       </div>
-      // would the wrapper class go here? but then state should be lifted?
       <List />
       <AboutMe />
       <h1>Drag those GIFs around</h1>
@@ -37,7 +36,6 @@ function App() {
       <SortableGifsContainer axis="y" onSortEnd={onSortEnd}>
         {gifs.map((gif, i) => (
           <SortableGif
-            // don't forget to pass index prop with item index
             index={i}
             key={gif}
             gif={gif}
