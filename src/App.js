@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -6,7 +7,24 @@ import AboutMe from "./AboutMe";
 import Gif from "./Gif";
 import { sortableContainer, sortableElement } from "react-sortable-hoc";
 import arrayMove from "array-move";
+=======
+import React, {useState, useEffect} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import List from './List';
+import AboutMe from './AboutMe';
+import Gif from './Gif';
+import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
 
+>>>>>>> 532e2fc6a1ec3931c7e36729955e3812564ccfd0
+
+// this might go in List for todo proj
+const SortableGifsContainer = sortableContainer(({ children }) => <div className="gifs">{children}</div>);
+
+// move the part with mapping a each todoItem to component
+// wrapping each ListItem in a HOC sortableConponent
+const SortableGif = sortableElement(({ gif }) => <Gif key={gif} gif={gif} />);
 
 const SortableGifsContainer = sortableContainer(({ children }) => (
   <div >{children}</div>
