@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import ListItem from "./ListItem";
-import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 
 
 
 function List() {
-
   // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
@@ -23,6 +22,25 @@ function List() {
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todos));
   }, [todos]);
+
+  // set up sortable containers
+  const SortableListContainer = sortableContainer(({children}) => <div>{children}</div>)
+  const DragHandle = sortableHandle(() => <span>::</span>);
+  const SortableListItem = sortableElement(({...props}) =>
+    <div className="todo">
+
+    <DragHandle />
+    <ListItem 
+    key={props.id}
+    index={props.index}
+    content={props.content}
+    isCompleted={props.isCompleted}
+    handleKeyDown={props.handleKeyDown}
+    updateTodoAtIndex={props.updateTodoAtIndex}
+    toggleComplete={props.toggleComplete}
+    removeTodoAtIndex={props.removeTodoAtIndex}
+    />
+    </div>)
 
   // event handlers
   function handleKeyDown(e, i) {
@@ -86,23 +104,47 @@ function List() {
     setTodos(tempTodos);
   }
 
-  return (
-    <form className="todo-list">
-      <ul>
-        {todos.map((todoItem, i) => (
-          <ListItem
-            key={todoItem.id}
-            content={todoItem.content}
-            isCompleted={todoItem.isCompleted}
-            onKeyDown={e => handleKeyDown(e, i)}
-            onChange={e => updateTodoAtIndex(e, i)}
-            onClick={e => toggleTodoCompleteAtIndex(i)}
-            removeTodoAtIndex={e => removeTodoAtIndex(i)}
-          />
-        ))}
-      </ul>
-    </form>
-  );
+  const onListSortEnd = ({oldIndex, newIndex}) => setTodos(arrayMove(todos, oldIndex, newIndex));
+  
+return(
+  <form className="todo-list">
+    <SortableListContainer axis="x" pressDelay='150' onSortEnd={onListSortEnd} useDragHandle={true} >
+      {todos.map((todoItem, i) => (
+        <SortableListItem 
+        key={todoItem.id}
+        index={i}
+        content={todoItem.content}
+        isCompleted={todoItem.isCompleted}
+        handleKeyDown={e => handleKeyDown(e, i)}
+        updateTodoAtIndex={e => updateTodoAtIndex(e, i)}
+        toddleComplete={e => toggleTodoCompleteAtIndex(i)}
+        removeTodoAtIndex={e => removeTodoAtIndex(i)}
+        />
+      ))}
+    </SortableListContainer>
+
+  </form>
+
+)
+  
 }
+
+// return (
+//   <form className="todo-list">
+//     <ul>
+//       {todos.map((todoItem, i) => (
+//         <ListItem
+//           key={todoItem.id}
+//           content={todoItem.content}
+//           isCompleted={todoItem.isCompleted}
+//           onKeyDown={e => handleKeyDown(e, i)}
+//           onChange={e => updateTodoAtIndex(e, i)}
+//           onClick={e => toggleTodoCompleteAtIndex(i)}
+//           removeTodoAtIndex={e => removeTodoAtIndex(i)}
+//         />
+//       ))}
+//     </ul>
+//   </form>
+// );
 
 export default List;

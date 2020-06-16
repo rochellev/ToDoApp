@@ -118,4 +118,6 @@ input {
   cursor: grab;
   height: 180px;
   width: 240px;
+  display: flex;
+  flex-direction: column;
 }

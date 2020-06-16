@@ -11,7 +11,6 @@ import arrayMove from "array-move";
 const SortableGifsContainer = sortableContainer(({ children }) => <div className="gifs">{children}</div>);
 
 
-// const SortableGif = sortableElement(({ gif, onGifClick }) => <Gif key={gif} gif={gif} onGifClick={onGifClick} />);
 const SortableGif = sortableElement(({ ...props }) => <Gif key={props.gif} gif={props.gif} onClick={props.onClick} />);
 function App() {
   const [gifs, setGifs] = useState([
@@ -26,7 +25,6 @@ function App() {
 
   function onGifClick(){
     console.log("oh hello click");
-    alert("hello");
   }
 
   return (
@@ -38,7 +36,7 @@ function App() {
       <AboutMe />
       <h1>Drag those GIFs around</h1>
       <h2>Set 1</h2>
-      <SortableGifsContainer axis="y" distance="5" onSortEnd={onSortEnd}>
+      <SortableGifsContainer className="gif" axis="y" pressDelay="100" onSortEnd={onSortEnd}>
         {gifs.map((gif, i) => (
           <SortableGif
             index={i}
