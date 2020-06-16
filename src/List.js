@@ -4,8 +4,8 @@ import "./App.css";
 import ListItem from "./ListItem";
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
-
-
+// import PropTypes from 'prop-types';
+import dragIcon from "./drag-dots-icon.png";
 
 function List() {
   // runs when component is initialized, get todos from local storage
@@ -25,7 +25,10 @@ function List() {
 
   // set up sortable containers
   const SortableListContainer = sortableContainer(({children}) => <div>{children}</div>)
-  const DragHandle = sortableHandle(() => <span>::</span>);
+  const DragHandle = sortableHandle(() => 
+    <span>
+      <img className={"delete-button drag-button"} src={dragIcon} alt={"drag button"} />
+      </span>);
   const SortableListItem = sortableElement(({...props}) =>
     <div className="todo">
 
@@ -105,14 +108,15 @@ function List() {
   }
 
   const onListSortEnd = ({oldIndex, newIndex}) => setTodos(arrayMove(todos, oldIndex, newIndex));
-  
+  var delayNumber= Number(150);  
 return(
   <form className="todo-list">
-    <SortableListContainer axis="x" pressDelay='150' onSortEnd={onListSortEnd} useDragHandle={true} >
+    <SortableListContainer axis="y" pressDelay={150} onSortEnd={onListSortEnd} useDragHandle={true}>
       {todos.map((todoItem, i) => (
         <SortableListItem 
         key={todoItem.id}
         index={i}
+        shouldUseDragHandle={true}
         content={todoItem.content}
         isCompleted={todoItem.isCompleted}
         handleKeyDown={e => handleKeyDown(e, i)}
@@ -126,25 +130,6 @@ return(
   </form>
 
 )
+      }
   
-}
-
-// return (
-//   <form className="todo-list">
-//     <ul>
-//       {todos.map((todoItem, i) => (
-//         <ListItem
-//           key={todoItem.id}
-//           content={todoItem.content}
-//           isCompleted={todoItem.isCompleted}
-//           onKeyDown={e => handleKeyDown(e, i)}
-//           onChange={e => updateTodoAtIndex(e, i)}
-//           onClick={e => toggleTodoCompleteAtIndex(i)}
-//           removeTodoAtIndex={e => removeTodoAtIndex(i)}
-//         />
-//       ))}
-//     </ul>
-//   </form>
-// );
-
 export default List;
