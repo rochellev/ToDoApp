@@ -112,12 +112,3 @@ input {
     transform: rotate(360deg);
   }
 }
-
-/* from the HOC tutorial */
-.gif {
-  cursor: grab;
-  height: 180px;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-}

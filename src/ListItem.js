@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import deleteIcon from "./delete-icon.png";
-//import dragIcon from "./drag-dots-icon.png";
 
 function ListItem(props) {
   return (
