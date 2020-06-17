@@ -26,10 +26,14 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
     * **fix**: add code to remove local storage item using the id for the key, had to strigify the id
 * after page refresh, the item order is not saved
   * **fix**: refactor data storage, "todoList" is the key for an array of todo item objects. this array is updated in the effect function of todos
+* after adding drag and drop wrapper components, the input would only take one key at a time, forcing user to click before each letter typed! -- loss of focus when using input
+  * Each ```SortableListItem``` was being created at each render due to the React reconciliation process which discards and replaces components in DOM. This caused the loss of focus because input was removed then added back to the DOM
+  * **fix**: Moving the mapping function where each ```SortableListItem``` is instantiated to inside the ```SortableList``` component. Now the ```List``` component returns a single ```SortableList```, passing all the functions as props. This way when a change happens, React will re-render the existing components as expected. Found solution in this [issue](https://github.com/clauderic/react-sortable-hoc/issues/120) thread.
+  * Learned more about what causes re-render and the reconciliation process. Also, feel more confident about passing props. I started using this spread syntax ```{...props}``` so I don't have to write out each prop explicitly, very useful! However, React still has some element of magic that I am figuring out.
 
 ## In Development
 * delete button only shows when focused on the item
-* draggable list items, users can reorder
+* completed items moved to bottom of list
 
 ## About Me
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
@@ -43,3 +47,5 @@ Delete "X" Icon made by <a href="https://www.flaticon.com/authors/google" title=
 Draggin Dots Icon made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 Drag and drop tutorial https://css-tricks.com/draggin-and-droppin-in-react/
+
+React Sortable HOC https://github.com/clauderic/react-sortable-hoc
