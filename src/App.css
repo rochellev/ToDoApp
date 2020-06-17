@@ -30,7 +30,6 @@ body {
 }
 
 
-
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -78,6 +77,16 @@ body {
 .checkbox-checked {
   color: #000;
   background: #fff;
+}
+
+.delete-button {
+  height: 12px;
+  width: 12px;
+  display: flex;
+}
+
+.drag-button {
+  padding-right: 8px;
 }
 
 ul {
