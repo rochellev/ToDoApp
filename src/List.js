@@ -100,9 +100,6 @@ function List() {
 
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
-    console.log(`updateTodoAtIndex`);
-    console.log(`event type: ${e.target.type}`);
-
     newTodos[i].content = e.target.value;
     setTodos(newTodos);
   }
@@ -135,8 +132,6 @@ function List() {
     tempTodos[i].isCompleted = !tempTodos[i].isCompleted;
     setTodos(tempTodos);
   }
-
-  
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
     setTodos(arrayMove(todos, oldIndex, newIndex));
