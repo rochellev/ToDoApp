@@ -38,6 +38,24 @@ const SortableListItem = sortableElement(({ ...props }) => (
   </div>
 ));
 
+const SortableList = sortableContainer(({ ...props }) => (
+  <div className="todo-list">
+    {props.todos.map((todoItem, i) => (
+      <SortableListItem
+        key={todoItem.id}
+        index={i}
+        shouldUseDragHandle={true}
+        content={todoItem.content}
+        isCompleted={todoItem.isCompleted}
+        handleKeyDown={e => props.handleKeyDown(e, i)}
+        updateTodoAtIndex={e => props.updateTodoAtIndex(e, i)}
+        toddleComplete={e => props.toggleTodoCompleteAtIndex(i)}
+        removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
+      />
+    ))}
+  </div>
+));
+
 function List() {
   // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
@@ -118,23 +136,7 @@ function List() {
     setTodos(tempTodos);
   }
 
-  const SortableList = sortableContainer(({ todos }) => (
-    <div className="todo-list">
-      {todos.map((todoItem, i) => (
-        <SortableListItem
-          key={todoItem.id}
-          index={i}
-          shouldUseDragHandle={true}
-          content={todoItem.content}
-          isCompleted={todoItem.isCompleted}
-          handleKeyDown={e => handleKeyDown(e, i)}
-          updateTodoAtIndex={e => updateTodoAtIndex(e, i)}
-          toddleComplete={e => toggleTodoCompleteAtIndex(i)}
-          removeTodoAtIndex={e => removeTodoAtIndex(i)}
-        />
-      ))}
-    </div>
-  ));
+  
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
     setTodos(arrayMove(todos, oldIndex, newIndex));
@@ -146,6 +148,10 @@ function List() {
         onSortEnd={onListSortEnd}
         useDragHandle={true}
         todos={todos}
+        handleKeyDown={(e, i) => handleKeyDown(e, i)}
+        updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
+        toddleComplete={(i) => toggleTodoCompleteAtIndex(i)}
+        removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
       ></SortableList>
     </form>
   );
