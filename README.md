@@ -41,3 +41,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Delete "X" Icon made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 Draggin Dots Icon made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
+Drag and drop tutorial https://css-tricks.com/draggin-and-droppin-in-react/
