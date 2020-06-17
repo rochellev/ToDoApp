@@ -49,7 +49,7 @@ const SortableList = sortableContainer(({ ...props }) => (
         isCompleted={todoItem.isCompleted}
         handleKeyDown={e => props.handleKeyDown(e, i)}
         updateTodoAtIndex={e => props.updateTodoAtIndex(e, i)}
-        toddleComplete={e => props.toggleTodoCompleteAtIndex(i)}
+        toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
       />
     ))}
@@ -150,7 +150,7 @@ function List() {
         todos={todos}
         handleKeyDown={(e, i) => handleKeyDown(e, i)}
         updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
-        toddleComplete={(i) => toggleTodoCompleteAtIndex(i)}
+        toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
         removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
       ></SortableList>
     </form>
