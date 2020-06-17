@@ -8,7 +8,6 @@ import {
   sortableHandle
 } from "react-sortable-hoc";
 import arrayMove from "array-move";
-// import PropTypes from 'prop-types';
 import dragIcon from "./drag-dots-icon.png";
 
 // define sortable HOC to wrap my components
@@ -153,29 +152,3 @@ function List() {
 }
 
 export default List;
-
-// before moving the map function
-{
-  /* <form className="todo-list">
-    <SortableListContainer axis="y" shouldCancelStart={cancelStart} onSortEnd={onListSortEnd} useDragHandle={true} >
-      {todos.map((todoItem, i) => (
-        <SortableListItem 
-        key={todoItem.id}
-        index={i}
-        shouldUseDragHandle={true}
-        content={todoItem.content}
-        isCompleted={todoItem.isCompleted}
-        handleKeyDown={e => handleKeyDown(e, i)}
-        updateTodoAtIndex={e => updateTodoAtIndex(e, i)}
-        toddleComplete={e => toggleTodoCompleteAtIndex(i)}
-        removeTodoAtIndex={e => removeTodoAtIndex(i)}
-        />
-      ))}
-    </SortableListContainer>
-
-  </form> */
-}
-// handleKeyDown={e => handleKeyDown(e, i)}
-// updateTodoAtIndex={e => updateTodoAtIndex(e, i)}
-// toddleComplete={e => toggleTodoCompleteAtIndex(i)}
-// removeTodoAtIndex={e => removeTodoAtIndex(i)}
