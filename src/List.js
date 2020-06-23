@@ -33,6 +33,9 @@ const SortableListItem = sortableElement(({ ...props }) => (
       updateTodoAtIndex={props.updateTodoAtIndex}
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
+      isFocused={props.isFocused}
+      handleInputFocus={props.handleInputFocus}
+      handleInputBlur= {props.handleInputBlur}
     />
   </div>
 ));
@@ -50,12 +53,17 @@ const SortableList = sortableContainer(({ ...props }) => (
         updateTodoAtIndex={e => props.updateTodoAtIndex(e, i)}
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
+        isFocused={props.isFocused}
+        handleInputFocus={() => props.handleInputFocus()}
+        handleInputBlur= {() => props.handleInputBlur()}
+
       />
     ))}
   </div>
 ));
 
 function List() {
+  const [isFocused, setIsFocused] = useState(false);
   // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
@@ -132,6 +140,14 @@ function List() {
     setTodos(tempTodos);
   }
 
+  function handleInputFocus(){
+    setIsFocused(true);
+  };
+
+  function handleInputBlur(){
+    setIsFocused(false);
+  };
+
   const onListSortEnd = ({ oldIndex, newIndex }) =>
     setTodos(arrayMove(todos, oldIndex, newIndex));
 
@@ -146,6 +162,9 @@ function List() {
         updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
         toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
         removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
+        isFocused={isFocused}
+        handleInputFocus={() => handleInputFocus()}
+        handleInputBlur= {() => handleInputBlur()}
       ></SortableList>
     </form>
   );

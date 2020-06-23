@@ -13,10 +13,14 @@ function ListItem(props) {
         value={props.content}
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
+        onFocus={props.handleInputFocus}
+        onBlur={props.handleInputBlur}
       />
-        <div >
+      {props.isFocused && 
+      <div>
        <img className={"delete-button"} src={deleteIcon} alt={"delete button"} onClick={props.removeTodoAtIndex}/>
       </div>
+      }
     </div>
   );
 }
