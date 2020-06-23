@@ -54,8 +54,8 @@ const SortableList = sortableContainer(({ ...props }) => (
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
         isFocused={props.isFocused}
-        handleInputFocus={() => props.handleInputFocus()}
-        handleInputBlur= {() => props.handleInputBlur()}
+        handleInputFocus={(e) => props.handleInputFocus(e)}
+        handleInputBlur= {(e) => props.handleInputBlur(e)}
 
       />
     ))}
@@ -140,11 +140,13 @@ function List() {
     setTodos(tempTodos);
   }
 
-  function handleInputFocus(){
+  function handleInputFocus(e){
+    e.stopPropagation()
     setIsFocused(true);
   };
 
-  function handleInputBlur(){
+  function handleInputBlur(e){
+    e.stopPropagation()
     setIsFocused(false);
   };
 
@@ -163,8 +165,8 @@ function List() {
         toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
         removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
         isFocused={isFocused}
-        handleInputFocus={() => handleInputFocus()}
-        handleInputBlur= {() => handleInputBlur()}
+        handleInputFocus={(e) => handleInputFocus(e)}
+        handleInputBlur= {(e) => handleInputBlur(e)}
       ></SortableList>
     </form>
   );
