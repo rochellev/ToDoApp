@@ -108,6 +108,7 @@ function List() {
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
+    handleInputFocus(e);
     setTodos(newTodos);
   }
 
@@ -141,12 +142,11 @@ function List() {
   }
 
   function handleInputFocus(e){
-    e.stopPropagation()
     setIsFocused(true);
   };
 
   function handleInputBlur(e){
-    e.stopPropagation()
+    e.preventDefault()
     setIsFocused(false);
   };
 
