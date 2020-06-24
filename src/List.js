@@ -21,6 +21,8 @@ const DragHandle = sortableHandle(() => (
   </span>
 ));
 
+
+
 const SortableListItem = sortableElement(({ ...props }) => (
   <div className="todo">
     <DragHandle />
@@ -34,15 +36,18 @@ const SortableListItem = sortableElement(({ ...props }) => (
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
       isFocused={props.isFocused}
-      handleInputFocus={props.handleInputFocus}
-      handleInputBlur= {props.handleInputBlur}
+
     />
   </div>
 ));
 
 const SortableList = sortableContainer(({ ...props }) => (
   <div className="todo-list">
+    <ul
+    
+    >
     {props.todos.map((todoItem, i) => (
+      <li>
       <SortableListItem
         key={todoItem.id}
         index={i}
@@ -54,11 +59,12 @@ const SortableList = sortableContainer(({ ...props }) => (
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
         isFocused={props.isFocused}
-        handleInputFocus={(e) => props.handleInputFocus(e)}
-        handleInputBlur= {(e) => props.handleInputBlur(e)}
-
+        handleInputFocus={e => props.handleInputFocus(e)}
+handleInputBlur= {e =>props.handleInputBlur(e)}
       />
+      </li>
     ))}
+    </ul>
   </div>
 ));
 
@@ -142,12 +148,21 @@ function List() {
   }
 
   function handleInputFocus(e){
+    console.log(` ********** `)
+    console.log(`handleInputFocus `)
+
     setIsFocused(true);
+    
+    console.log(` ********** `)
   };
 
   function handleInputBlur(e){
-    e.preventDefault()
+    console.log(` ********** `)
+    console.log(`handleInputBlur`)
+  
     setIsFocused(false);
+    console.log(`isFocused: ${isFocused}`)
+    console.log(` ********** `)
   };
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
