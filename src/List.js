@@ -36,8 +36,7 @@ const SortableListItem = sortableElement(({ ...props }) => (
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
       isFocused={props.isFocused}
-      handleInputFocus={props.handleInputFocus}
-        handleInputBlur= {props.handleInputBlur}
+      handleInputBlur= {props.handleInputBlur}
 
     />
   </div>
@@ -56,22 +55,21 @@ const SortableList = sortableContainer(({ ...props }) => (
         updateTodoAtIndex={e => props.updateTodoAtIndex(e, i)}
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
-        isFocused={props.isFocused}
-        handleInputFocus={e => props.handleInputFocus(e)}
-        handleInputBlur= {e =>props.handleInputBlur(e)}
+        isFocused={todoItem.isFocused}
+        handleInputBlur= {e =>props.handleInputBlur(i)}
       />
     ))}
   </div>
 ));
 
 function List() {
-  const [isFocused, setIsFocused] = useState(false);
+  // const [isFocused, setIsFocused] = useState(false);
   // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
     if (!restoredList) {
-      restoredList = [{ content: "", isCompleted: false, id: uuidv4() }];
+      restoredList = [{ content: "", isCompleted: false, id: uuidv4(), isFocused: false}];
     }
     return restoredList;
   });
@@ -97,7 +95,8 @@ function List() {
     newTodos.splice(i + 1, 0, {
       content: "",
       isCompleted: false,
-      id: uuidv4()
+      id: uuidv4(),
+      isFocused: false
     });
 
     setTodos(newTodos);
@@ -111,6 +110,7 @@ function List() {
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
+    newTodos[i].isFocused = true;
     // setIsFocused(true);
     setTodos(newTodos);
   }
@@ -144,14 +144,8 @@ function List() {
     setTodos(tempTodos);
   }
 
-  function handleInputFocus(e){
-    console.log(`called handleInputFocus`)
-    setIsFocused(true);
-  };
-
-  function handleInputBlur(e){
-    setIsFocused(false);
-  
+  function handleInputBlur(i){
+    todos[i].isFocused = false;
   };
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
@@ -168,9 +162,7 @@ function List() {
         updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
         toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
         removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
-        isFocused={isFocused}
-        handleInputFocus={(e) => handleInputFocus(e)}
-        handleInputBlur= {(e) => handleInputBlur(e)}
+        handleInputBlur= {(i) => handleInputBlur(i)}
       ></SortableList>
     </form>
   );

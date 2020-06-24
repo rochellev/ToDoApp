@@ -16,7 +16,6 @@ function ListItem(props) {
         value={props.content}
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
-        onFocus={props.handleInputFocus}
         onBlur={props.handleInputBlur}
       />
       {props.isFocused && 
