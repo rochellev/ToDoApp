@@ -36,6 +36,8 @@ const SortableListItem = sortableElement(({ ...props }) => (
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
       isFocused={props.isFocused}
+      handleInputFocus={props.handleInputFocus}
+        handleInputBlur= {props.handleInputBlur}
 
     />
   </div>
@@ -105,10 +107,11 @@ function List() {
     }, 0);
   }
 
+  // handle the onChange in input
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
-    handleInputFocus(e);
+    // setIsFocused(true);
     setTodos(newTodos);
   }
 
@@ -142,21 +145,13 @@ function List() {
   }
 
   function handleInputFocus(e){
-    console.log(` ********** `)
-    console.log(`handleInputFocus `)
-
+    console.log(`called handleInputFocus`)
     setIsFocused(true);
-    
-    console.log(` ********** `)
   };
 
   function handleInputBlur(e){
-    console.log(` ********** `)
-    console.log(`handleInputBlur`)
-  
     setIsFocused(false);
-    console.log(`isFocused: ${isFocused}`)
-    console.log(` ********** `)
+  
   };
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
