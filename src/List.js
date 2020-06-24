@@ -36,6 +36,7 @@ const SortableListItem = sortableElement(({ ...props }) => (
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
       isFocused={props.isFocused}
+      handleInputFocus={props.handleInputFocus}
       handleInputBlur= {props.handleInputBlur}
 
     />
@@ -56,6 +57,7 @@ const SortableList = sortableContainer(({ ...props }) => (
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
         isFocused={todoItem.isFocused}
+        handleInputFocus={e => props.handleInputFocus(i)}
         handleInputBlur= {e =>props.handleInputBlur(i)}
       />
     ))}
@@ -110,7 +112,7 @@ function List() {
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
-    newTodos[i].isFocused = true;
+    // newTodos[i].isFocused = true;
     // setIsFocused(true);
     setTodos(newTodos);
   }
@@ -122,7 +124,8 @@ function List() {
       newTodos.splice(0, 1, {
         content: "",
         isCompleted: false,
-        id: uuidv4()
+        id: uuidv4(),
+        isFocused: false,
       });
       setTodos(newTodos);
     } else {
@@ -144,8 +147,20 @@ function List() {
     setTodos(tempTodos);
   }
 
+  function handleInputFocus(i){
+    const tempTodos = [...todos];
+    tempTodos[i].isFocused = true;
+    setTodos(tempTodos);
+    
+    // todos[i].isFocused = true;
+  };
+
   function handleInputBlur(i){
-    todos[i].isFocused = false;
+    const tempTodos = [...todos];
+    tempTodos[i].isFocused = false;
+    setTodos(tempTodos);
+    
+    // todos[i].isFocused = false;
   };
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
@@ -162,6 +177,7 @@ function List() {
         updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
         toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
         removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
+        handleInputFocus={(i) => handleInputFocus(i)}
         handleInputBlur= {(i) => handleInputBlur(i)}
       ></SortableList>
     </form>
