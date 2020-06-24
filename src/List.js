@@ -21,7 +21,7 @@ const DragHandle = sortableHandle(() => (
   </span>
 ));
 
-
+// move the on focus here? as list item instead of divs
 
 const SortableListItem = sortableElement(({ ...props }) => (
   <div className="todo">
@@ -43,11 +43,7 @@ const SortableListItem = sortableElement(({ ...props }) => (
 
 const SortableList = sortableContainer(({ ...props }) => (
   <div className="todo-list">
-    <ul
-    
-    >
     {props.todos.map((todoItem, i) => (
-      <li>
       <SortableListItem
         key={todoItem.id}
         index={i}
@@ -60,11 +56,9 @@ const SortableList = sortableContainer(({ ...props }) => (
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
         isFocused={props.isFocused}
         handleInputFocus={e => props.handleInputFocus(e)}
-handleInputBlur= {e =>props.handleInputBlur(e)}
+        handleInputBlur= {e =>props.handleInputBlur(e)}
       />
-      </li>
     ))}
-    </ul>
   </div>
 ));
 
