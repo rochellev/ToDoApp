@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
-import deleteIcon from "./delete-icon.png";
 
-// onFocus={props.handleInputFocus}
-// onBlur={props.handleInputBlur}
+
+
 
 function ListItem(props) {
   return (
@@ -16,12 +15,8 @@ function ListItem(props) {
         value={props.content}
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
-        onClick={props.handleInputFocus}
-        onBlur={props.handleInputBlur}
       />
-      {props.isFocused && 
-       <img className={"delete-button"} src={deleteIcon} alt={"delete button"} onClick={props.removeTodoAtIndex}/>
-      }
+
     </div>
   );
 }
@@ -29,3 +24,7 @@ function ListItem(props) {
 
 
 export default ListItem;
+
+
+// onClick={props.handleInputFocus}
+//         onBlur={props.handleInputBlur}

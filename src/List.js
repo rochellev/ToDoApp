@@ -9,6 +9,7 @@ import {
 } from "react-sortable-hoc";
 import arrayMove from "array-move";
 import dragIcon from "./drag-dots-icon.png";
+import deleteIcon from "./delete-icon.png";
 
 // define sortable HOC to wrap my components
 const DragHandle = sortableHandle(() => (
@@ -24,7 +25,8 @@ const DragHandle = sortableHandle(() => (
 // move the on focus here? as list item instead of divs
 
 const SortableListItem = sortableElement(({ ...props }) => (
-  <div className="todo">
+  <div className="todo" onFocus={props.handleInputFocus}
+  onBlur={props.handleInputBlur}>
     <DragHandle />
     <ListItem
       key={props.id}
@@ -34,12 +36,10 @@ const SortableListItem = sortableElement(({ ...props }) => (
       handleKeyDown={props.handleKeyDown}
       updateTodoAtIndex={props.updateTodoAtIndex}
       toggleComplete={props.toggleComplete}
-      removeTodoAtIndex={props.removeTodoAtIndex}
-      isFocused={props.isFocused}
-      handleInputFocus={props.handleInputFocus}
-      handleInputBlur= {props.handleInputBlur}
-
     />
+      {props.isFocused && 
+       <img className={"delete-button"} src={deleteIcon} alt={"delete button"} onClick={props.removeTodoAtIndex}/>
+      }
   </div>
 ));
 
@@ -58,7 +58,7 @@ const SortableList = sortableContainer(({ ...props }) => (
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
         isFocused={todoItem.isFocused}
         handleInputFocus={e => props.handleInputFocus(i)}
-        handleInputBlur= {e =>props.handleInputBlur(i)}
+        handleInputBlur={e => props.handleInputBlur(e, i)}
       />
     ))}
   </div>
@@ -71,7 +71,9 @@ function List() {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
     if (!restoredList) {
-      restoredList = [{ content: "", isCompleted: false, id: uuidv4(), isFocused: false}];
+      restoredList = [
+        { content: "", isCompleted: false, id: uuidv4(), isFocused: false }
+      ];
     }
     return restoredList;
   });
@@ -125,7 +127,7 @@ function List() {
         content: "",
         isCompleted: false,
         id: uuidv4(),
-        isFocused: false,
+        isFocused: false
       });
       setTodos(newTodos);
     } else {
@@ -147,21 +149,22 @@ function List() {
     setTodos(tempTodos);
   }
 
-  function handleInputFocus(i){
+  function handleInputFocus(i) {
     const tempTodos = [...todos];
     tempTodos[i].isFocused = true;
     setTodos(tempTodos);
-    
-    // todos[i].isFocused = true;
-  };
 
-  function handleInputBlur(i){
+    // todos[i].isFocused = true;
+  }
+
+  function handleInputBlur(e, i) {
+    // e.stopPropagation();
     const tempTodos = [...todos];
     tempTodos[i].isFocused = false;
     setTodos(tempTodos);
-    
+
     // todos[i].isFocused = false;
-  };
+  }
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
     setTodos(arrayMove(todos, oldIndex, newIndex));
@@ -174,11 +177,11 @@ function List() {
         useDragHandle={true}
         todos={todos}
         handleKeyDown={(e, i) => handleKeyDown(e, i)}
-        updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
-        toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
-        removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
-        handleInputFocus={(i) => handleInputFocus(i)}
-        handleInputBlur= {(i) => handleInputBlur(i)}
+        updateTodoAtIndex={(e, i) => updateTodoAtIndex(e, i)}
+        toggleComplete={i => toggleTodoCompleteAtIndex(i)}
+        removeTodoAtIndex={i => removeTodoAtIndex(i)}
+        handleInputFocus={i => handleInputFocus(i)}
+        handleInputBlur={(e, i) => handleInputBlur(e, i)}
       ></SortableList>
     </form>
   );
