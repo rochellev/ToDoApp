@@ -74,7 +74,18 @@ function List() {
   // runs when component is initialized, get todos from local storage
 
   // const [focusIndex, setFocusIndex] = useState(null);
-  const refItem = useRef(null);
+  //const refItem = useRef(null);
+
+  // going to move focused state outside. array of focused.
+  const [focusIndex, setFocusIndex] = useState(() => {
+    var restoredFocus = JSON.parse(localStorage.getItem("focusIndex"));
+
+    if(!restoredFocus){
+      restoredFocus = 0;
+    }
+    return restoredFocus;
+  });
+  
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
