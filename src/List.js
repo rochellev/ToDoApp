@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import ListItem from "./ListItem";
@@ -9,7 +9,7 @@ import {
 } from "react-sortable-hoc";
 import arrayMove from "array-move";
 import dragIcon from "./drag-dots-icon.png";
-import deleteIcon from "./delete-icon.png";
+
 
 // define sortable HOC to wrap my components
 const DragHandle = sortableHandle(() => (
@@ -29,6 +29,7 @@ const SortableListItem = sortableElement(({ ...props }) => (
     className="todo"
     onFocus={props.handleInputFocus}
     onBlur={props.handleInputBlur}
+ 
    
   >
     <DragHandle />
@@ -41,15 +42,9 @@ const SortableListItem = sortableElement(({ ...props }) => (
       handleKeyDown={props.handleKeyDown}
       updateTodoAtIndex={props.updateTodoAtIndex}
       toggleComplete={props.toggleComplete}
+      removeTodoAtIndex={props.removeTodoAtIndex}
+      isFocused={props.isFocused}
     />
-    {props.isFocused && (
-      <img
-        className={"delete-button"}
-        src={deleteIcon}
-        alt={"delete button"}
-        onClick={props.removeTodoAtIndex}
-      />
-    )}
   </div>
 ));
 
@@ -78,7 +73,8 @@ function List() {
   // const [isFocused, setIsFocused] = useState(false);
   // runs when component is initialized, get todos from local storage
 
-  // const [focusIndex, setFocusIndex] = useState();
+  // const [focusIndex, setFocusIndex] = useState(null);
+  const refItem = useRef(null);
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
@@ -96,7 +92,11 @@ function List() {
   }, [todos]);
 
   // focus on index to refocus after render
-
+  // useEffect(() => {
+  //   if(focusIndex){
+  //     // focus on the indexed list item
+  //   }
+  // });
 
 
   // event handlers

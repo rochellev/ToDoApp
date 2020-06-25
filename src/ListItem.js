@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-
+import deleteIcon from "./delete-icon.png";
 
 
 
@@ -16,6 +16,14 @@ function ListItem(props) {
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
       />
+         {props.isFocused && (
+      <img
+        className={"delete-button"}
+        src={deleteIcon}
+        alt={"delete button"}
+        onClick={props.removeTodoAtIndex}
+      />
+    )}
 
     </div>
   );
