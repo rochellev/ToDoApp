@@ -85,7 +85,11 @@ function List() {
     }
     return restoredFocus;
   });
-  
+
+  useEffect(() => {
+    localStorage.setItem("focusIndex", JSON.stringify(focusIndex));
+  }, [focusIndex])
+
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
