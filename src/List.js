@@ -25,10 +25,15 @@ const DragHandle = sortableHandle(() => (
 // move the on focus here? as list item instead of divs
 
 const SortableListItem = sortableElement(({ ...props }) => (
-  <div className="todo" onFocus={props.handleInputFocus}
-  onBlur={props.handleInputBlur}>
+  <div
+    className="todo"
+    onFocus={props.handleInputFocus}
+    onBlur={props.handleInputBlur}
+   
+  >
     <DragHandle />
     <ListItem
+  
       key={props.id}
       index={props.index}
       content={props.content}
@@ -37,14 +42,19 @@ const SortableListItem = sortableElement(({ ...props }) => (
       updateTodoAtIndex={props.updateTodoAtIndex}
       toggleComplete={props.toggleComplete}
     />
-      {props.isFocused && 
-       <img className={"delete-button"} src={deleteIcon} alt={"delete button"} onClick={props.removeTodoAtIndex}/>
-      }
+    {props.isFocused && (
+      <img
+        className={"delete-button"}
+        src={deleteIcon}
+        alt={"delete button"}
+        onClick={props.removeTodoAtIndex}
+      />
+    )}
   </div>
 ));
 
 const SortableList = sortableContainer(({ ...props }) => (
-  <div className="todo-list">
+  <div  className="todo-list">
     {props.todos.map((todoItem, i) => (
       <SortableListItem
         key={todoItem.id}
@@ -67,6 +77,8 @@ const SortableList = sortableContainer(({ ...props }) => (
 function List() {
   // const [isFocused, setIsFocused] = useState(false);
   // runs when component is initialized, get todos from local storage
+
+  // const [focusIndex, setFocusIndex] = useState();
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
@@ -82,6 +94,10 @@ function List() {
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todos));
   }, [todos]);
+
+  // focus on index to refocus after render
+
+
 
   // event handlers
   function handleKeyDown(e, i) {
@@ -150,6 +166,7 @@ function List() {
   }
 
   function handleInputFocus(i) {
+    console.log(`active element: ${document.activeElement.tagName}`)
     const tempTodos = [...todos];
     tempTodos[i].isFocused = true;
     setTodos(tempTodos);
@@ -158,10 +175,13 @@ function List() {
   }
 
   function handleInputBlur(e, i) {
+   
     // e.stopPropagation();
+    console.log(`active element: ${document.activeElement.tagName}`)
     const tempTodos = [...todos];
     tempTodos[i].isFocused = false;
     setTodos(tempTodos);
+
 
     // todos[i].isFocused = false;
   }
