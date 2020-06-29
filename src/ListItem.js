@@ -1,22 +1,25 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import deleteIcon from "./delete-icon.png";
 
 function ListItem(props) {
   const [isFocused, setIsFocused] = useState(false);
 
-  function toggleFocused(){
+  function toggleFocused() {
     setIsFocused(!isFocused);
   }
   const inputRef = useRef(null);
   useEffect(() => {
-    if(isFocused){
+    if (isFocused) {
       inputRef.current.focus();
     }
   }, [isFocused]);
   return (
-    <div onMouseEnter={toggleFocused}
-    onMouseLeave={toggleFocused}  className={`todo ${props.isCompleted && "todo-is-completed"}`}>
+    <div
+      onMouseEnter={toggleFocused}
+      onMouseLeave={toggleFocused}
+      className={`todo ${props.isCompleted && "todo-is-completed"}`}
+    >
       <div className={"checkbox"} onClick={props.toggleComplete}>
         {props.isCompleted && <span>&#x2714;</span>}
       </div>
@@ -26,26 +29,17 @@ function ListItem(props) {
         value={props.content}
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
-        
       />
-         {
-           isFocused && <img
-           className={"delete-button"}
-           src={deleteIcon}
-           alt={"delete button"}
-           onClick={props.removeTodoAtIndex}
-         />
-            
-         }
-
+      {isFocused && (
+        <img
+          className={"delete-button"}
+          src={deleteIcon}
+          alt={"delete button"}
+          onClick={props.removeTodoAtIndex}
+        />
+      )}
     </div>
   );
 }
 
-
-
 export default ListItem;
-
-
-// onClick={props.handleInputFocus}
-//         onBlur={props.handleInputBlur}

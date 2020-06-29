@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import ListItem from "./ListItem";
@@ -33,7 +33,6 @@ const SortableListItem = sortableElement(({ ...props }) => (
       updateTodoAtIndex={props.updateTodoAtIndex}
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
-     
     />
   </div>
 ));
