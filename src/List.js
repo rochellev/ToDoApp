@@ -11,6 +11,7 @@ import arrayMove from "array-move";
 import dragIcon from "./drag-dots-icon.png";
 
 
+
 // define sortable HOC to wrap my components
 const DragHandle = sortableHandle(() => (
   <span>
@@ -25,16 +26,9 @@ const DragHandle = sortableHandle(() => (
 // move the on focus here? as list item instead of divs
 
 const SortableListItem = sortableElement(({ ...props }) => (
-  <div
-    className="todo"
-    onFocus={props.handleInputFocus}
-    onBlur={props.handleInputBlur}
- 
-   
-  >
+  <div className="todo">
     <DragHandle />
     <ListItem
-  
       key={props.id}
       index={props.index}
       content={props.content}
@@ -44,6 +38,8 @@ const SortableListItem = sortableElement(({ ...props }) => (
       toggleComplete={props.toggleComplete}
       removeTodoAtIndex={props.removeTodoAtIndex}
       isFocused={props.isFocused}
+      handleInputFocus={props.handleInputFocus}
+
     />
   </div>
 ));
@@ -61,7 +57,7 @@ const SortableList = sortableContainer(({ ...props }) => (
         updateTodoAtIndex={e => props.updateTodoAtIndex(e, i)}
         toggleComplete={e => props.toggleComplete(i)}
         removeTodoAtIndex={e => props.removeTodoAtIndex(i)}
-        isFocused={todoItem.isFocused}
+        isFocused={props.isFocused}
         handleInputFocus={e => props.handleInputFocus(i)}
         handleInputBlur={e => props.handleInputBlur(e, i)}
       />
@@ -77,18 +73,26 @@ function List() {
   //const refItem = useRef(null);
 
   // going to move focused state outside. array of focused.
-  const [focusIndex, setFocusIndex] = useState(() => {
-    var restoredFocus = JSON.parse(localStorage.getItem("focusIndex"));
+  // const [focusIndex, setFocusIndex] = useState(() => {
+  //   var restoredFocus = JSON.parse(localStorage.getItem("focusIndex"));
 
-    if(!restoredFocus){
-      restoredFocus = 0;
-    }
-    return restoredFocus;
-  });
+  //   if(!restoredFocus){
+  //     restoredFocus = 0;
+  //   }
+  //   return restoredFocus;
+  // });
 
-  useEffect(() => {
-    localStorage.setItem("focusIndex", JSON.stringify(focusIndex));
-  }, [focusIndex])
+  // useEffect(() => {
+  //   localStorage.setItem("focusIndex", JSON.stringify(focusIndex));
+  // });
+
+  // useEffect(() => {
+
+  // })
+
+
+
+  const [focusIndex, setFocusIndex] = useState()
 
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
@@ -133,7 +137,7 @@ function List() {
       id: uuidv4(),
       isFocused: false
     });
-
+    handleInputFocus(i+1);
     setTodos(newTodos);
     // wait for state to finish update before focusing on new rendered input
     setTimeout(() => {
@@ -145,6 +149,7 @@ function List() {
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
+    setFocusIndex(i);
     // newTodos[i].isFocused = true;
     // setIsFocused(true);
     setTodos(newTodos);
@@ -166,7 +171,7 @@ function List() {
         todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
       );
     }
-
+// maybe need to do something here
     setTimeout(() => {
       i === 0
         ? document.forms[0].elements[0].focus()
@@ -177,14 +182,15 @@ function List() {
   function toggleTodoCompleteAtIndex(i) {
     const tempTodos = [...todos];
     tempTodos[i].isCompleted = !tempTodos[i].isCompleted;
+    setFocusIndex(i);
     setTodos(tempTodos);
   }
 
   function handleInputFocus(i) {
-    console.log(`active element: ${document.activeElement.tagName}`)
-    const tempTodos = [...todos];
-    tempTodos[i].isFocused = true;
-    setTodos(tempTodos);
+    // console.log(`**** handleInputFocus ****`)
+    // console.log(`active element: ${document.activeElement.tagName}`)
+    // console.log(`focusIndex= ${focusIndex}`)
+    setFocusIndex(i)
 
     // todos[i].isFocused = true;
   }
@@ -192,17 +198,23 @@ function List() {
   function handleInputBlur(e, i) {
    
     // e.stopPropagation();
-    console.log(`active element: ${document.activeElement.tagName}`)
-    const tempTodos = [...todos];
-    tempTodos[i].isFocused = false;
-    setTodos(tempTodos);
+    // console.log(`**** handleInputBlur ****`)
+    // console.log(`active element: ${document.activeElement.tagName}`)
+    // console.log(`focusIndex= ${focusIndex}`)
+    setFocusIndex(null);
+  
 
 
     // todos[i].isFocused = false;
   }
 
   const onListSortEnd = ({ oldIndex, newIndex }) =>
+  {
     setTodos(arrayMove(todos, oldIndex, newIndex));
+    setFocusIndex(newIndex)
+  }
+    
+   
 
   return (
     <form className="todo-list">
