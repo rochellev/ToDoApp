@@ -20,6 +20,8 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * CSS
 * HTML Web Storage API
 * git
+* Jest
+* React Testing Library
 
 ## Bugs
 * storage does only updates after hit enter
@@ -35,10 +37,13 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
   * **fix**: Moving the mapping function where the ```SortableListItem``` components are instantiated to inside the ```SortableList``` component. Now, the ```List``` component returns a single ```SortableList```, and React can resolve virtual DOM changes without needing to unmount and remount the components. 
   * Special thanks to this [issue](https://github.com/clauderic/react-sortable-hoc/issues/120) thread!
   * This bug really helped me understand the React component lifecycle better. It illustrated how the ```diff``` algorithm affects the rendering of components in the real DOM. Also using the spread syntax, ```{...props}```, for passing props is a lot easier because that's one less spot for typos or other errors!
+* focus event on one input triggers all -- showing delete icon for every list item
+  * event bubbling
 
 ## In Development
 * delete button only shows when focused on the item
 * completed items moved to bottom of list
+* multiple lists
 
 ## About Me
 [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
