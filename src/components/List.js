@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./App.css";
+import "./List.css";
 import ListItem from "./ListItem";
 import {
   sortableContainer,
@@ -8,7 +8,7 @@ import {
   sortableHandle
 } from "react-sortable-hoc";
 import arrayMove from "array-move";
-import dragIcon from "./drag-dots-icon.png";
+import dragIcon from "../icons/drag-dots-icon.png";
 
 // define sortable HOC to wrap my components
 const DragHandle = sortableHandle(() => (
