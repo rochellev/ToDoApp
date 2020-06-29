@@ -83,6 +83,8 @@ body {
   height: 12px;
   width: 12px;
   display: flex;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .drag-button {
