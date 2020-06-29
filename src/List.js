@@ -56,12 +56,13 @@ const SortableList = sortableContainer(({ ...props }) => (
 ));
 
 function List() {
-  // runs when component is initialized, get todos from local storage
   const [todos, setTodos] = useState(() => {
     var restoredList = JSON.parse(localStorage.getItem("todoList"));
 
     if (!restoredList) {
-      restoredList = [{ content: "", isCompleted: false, id: uuidv4() }];
+      restoredList = [
+        { content: "", isCompleted: false, id: uuidv4(), isFocused: false }
+      ];
     }
     return restoredList;
   });
@@ -87,9 +88,9 @@ function List() {
     newTodos.splice(i + 1, 0, {
       content: "",
       isCompleted: false,
-      id: uuidv4()
+      id: uuidv4(),
+      isFocused: false
     });
-
     setTodos(newTodos);
     // wait for state to finish update before focusing on new rendered input
     setTimeout(() => {
@@ -97,6 +98,7 @@ function List() {
     }, 0);
   }
 
+  // handle the onChange in input
   function updateTodoAtIndex(e, i) {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
@@ -104,13 +106,13 @@ function List() {
   }
 
   function removeTodoAtIndex(i) {
-    //  if (i === 0 && todos.length === 1) return;
     if (i === 0 && todos.length === 1) {
       const newTodos = [...todos];
       newTodos.splice(0, 1, {
         content: "",
         isCompleted: false,
-        id: uuidv4()
+        id: uuidv4(),
+        isFocused: false
       });
       setTodos(newTodos);
     } else {
@@ -118,7 +120,6 @@ function List() {
         todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
       );
     }
-
     setTimeout(() => {
       i === 0
         ? document.forms[0].elements[0].focus()
@@ -132,8 +133,9 @@ function List() {
     setTodos(tempTodos);
   }
 
-  const onListSortEnd = ({ oldIndex, newIndex }) =>
+  const onListSortEnd = ({ oldIndex, newIndex }) => {
     setTodos(arrayMove(todos, oldIndex, newIndex));
+  };
 
   return (
     <form className="todo-list">
@@ -143,9 +145,9 @@ function List() {
         useDragHandle={true}
         todos={todos}
         handleKeyDown={(e, i) => handleKeyDown(e, i)}
-        updateTodoAtIndex={(e,i) => updateTodoAtIndex(e, i)}
-        toggleComplete={(i) => toggleTodoCompleteAtIndex(i)}
-        removeTodoAtIndex={(i) => removeTodoAtIndex(i)}
+        updateTodoAtIndex={(e, i) => updateTodoAtIndex(e, i)}
+        toggleComplete={i => toggleTodoCompleteAtIndex(i)}
+        removeTodoAtIndex={i => removeTodoAtIndex(i)}
       ></SortableList>
     </form>
   );

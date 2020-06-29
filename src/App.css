@@ -42,7 +42,7 @@ body {
 .todo {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  margin: 5px;
 }
 
 .todo-is-completed .checkbox {
@@ -83,6 +83,8 @@ body {
   height: 12px;
   width: 12px;
   display: flex;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .drag-button {
