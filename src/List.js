@@ -138,7 +138,7 @@ function List() {
   };
 
   return (
-    <form className="todo-list">
+    <form className="todo-container">
       <SortableList
         axis="y"
         onSortEnd={onListSortEnd}
