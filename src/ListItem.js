@@ -15,7 +15,8 @@ function ListItem(props) {
     }
   }, [isFocused]);
   return (
-    <div  className={`todo ${props.isCompleted && "todo-is-completed"}`}>
+    <div onMouseEnter={toggleFocused}
+    onMouseLeave={toggleFocused}  className={`todo ${props.isCompleted && "todo-is-completed"}`}>
       <div className={"checkbox"} onClick={props.toggleComplete}>
         {props.isCompleted && <span>&#x2714;</span>}
       </div>
@@ -25,7 +26,7 @@ function ListItem(props) {
         value={props.content}
         onKeyDown={props.handleKeyDown}
         onChange={props.updateTodoAtIndex}
-        onClick={toggleFocused}
+        
       />
          {
            isFocused && <img

@@ -42,7 +42,7 @@ body {
 .todo {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  margin: 5px;
 }
 
 .todo-is-completed .checkbox {
