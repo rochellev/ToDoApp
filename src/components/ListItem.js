@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./App.css";
-import deleteIcon from "./delete-icon.png";
+import "./List.css";
+import deleteIcon from "../icons/delete-icon.png";
 
 function ListItem(props) {
   const [isFocused, setIsFocused] = useState(false);

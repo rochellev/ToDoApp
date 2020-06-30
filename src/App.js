@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import logo from "./logo.svg";
+import logo from "./icons/logo.svg";
 import "./App.css";
-import List from "./List";
-import AboutMe from "./AboutMe";
+import List from "./components/List";
+import AboutMe from "./components/AboutMe";
 
 function App() {
   // list of todo lists
