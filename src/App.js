@@ -5,7 +5,7 @@ import List from "./components/List";
 import AboutMe from "./components/AboutMe";
 
 function App() {
-  // list of todo lists
+  // 2D array
   const [todoCards, setTodoCards] = useState( () => {
     
   });
