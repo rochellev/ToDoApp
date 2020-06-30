@@ -55,22 +55,8 @@ const SortableList = sortableContainer(({ ...props }) => (
   </div>
 ));
 
-function List() {
-  const [todos, setTodos] = useState(() => {
-    var restoredList = JSON.parse(localStorage.getItem("todoList"));
-
-    if (!restoredList) {
-      restoredList = [
-        { content: "", isCompleted: false, id: uuidv4(), isFocused: false }
-      ];
-    }
-    return restoredList;
-  });
-
-  // save todos in one object
-  useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(todos));
-  }, [todos]);
+function List(props) {
+ 
 
   // event handlers
   function handleKeyDown(e, i) {
