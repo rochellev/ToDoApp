@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  border: 5px solid red;
+  border: 2px solid red;
 
 }
 
@@ -14,7 +14,8 @@
   align-items: center;
   justify-content: center;
   color: white;
-  border: 5px solid green;
+  border: 2px solid green;
+  padding: 5px
   
 }
 
