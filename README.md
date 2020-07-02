@@ -1,16 +1,21 @@
 # To Do App
 ### Rochelle Crain
-<br>
+
+## Live Web App
+Visit [rochellecrain.com](https://www.rochellecrain.com/) to see this app in action!
 
 ## Description
-To Do App is modeled after my favorite to do app, Google Keep. Users can keep track of their tasks.
-
-Visit [rochellecrain.com](https://www.rochellecrain.com/) to see this app in action. I currently have access restricted (worried about excessive charges!), but please feel free to visit my app with these credentials:
-  username: user
-  password: rochelle
+This To Do Web App is inspired by my favorite to do app, Google Keep. The goal of this app is to provide a simple task keeping system for users and to further develop my React skills.
 
 ## Development Process
-I developed this To Do App to practice my React and AWS skills. To begin I followed this [tutorial](https://upmostly.com/tutorials/build-a-todo-app-in-react-using-hooks) to make a static version of the app using React functional components and hooks. I then deployed it using AWS Amplify with a custom domain name using Amazon Route 53. Now, I am refactoring and developing new features. You can see the app here, [rochellecrain.com](https://www.rochellecrain.com/). 
+To begin I followed this [tutorial](https://upmostly.com/tutorials/build-a-todo-app-in-react-using-hooks), which produced a simple web app that I could start building on. I deployed this web app using AWS Amplify with a custom domain name through Amazon Route 53.
+
+## Features
+* Add, modify, and delete tasks
+* Reorder tasks by draging and dropping
+* Tasks saved in local storage
+* Delete button appears only when hovering over a given task
+* Deployed, available to the public: [rochellecrain.com](https://www.rochellecrain.com/)
 
 ## Technologies Used
 * JavaScript
@@ -24,6 +29,7 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * React Testing Library
 
 ## Bugs
+Since the primary goal for this web app was for me to learn, I have documented some of the bugs I encountered and their solutions. 
 * storage does only updates after hit enter
    * **fix**: ```useEffect``` for adding items to local storage, called whenever todos change so local storage updates after each render
 * deleting first item on list crashes app!
@@ -40,22 +46,17 @@ I developed this To Do App to practice my React and AWS skills. To begin I follo
 * focus event on one input triggers all -- showing delete icon for every list item
   * event bubbling
 
-## In Development
-* delete button only shows when focused on the item
-* completed items moved to bottom of list
-* multiple lists
-
 ## About Me
-[LinkedIn](https://www.linkedin.com/in/rochelle-roberts)
+I am a Software Engineer with a passion for creating apps and actively seeking employment. Check out my [LinkedIn](https://www.linkedin.com/in/rochelle-roberts)!
 
 
 ## Credits
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Thanks to this [tutorial](https://upmostly.com/tutorials/build-a-todo-app-in-react-using-hooks) for giving me a good starting point.
+
 Delete "X" Icon made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 Draggin Dots Icon made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
-Drag and drop tutorial https://css-tricks.com/draggin-and-droppin-in-react/
-
-React Sortable HOC https://github.com/clauderic/react-sortable-hoc
+[React Sortable HOC](https://github.com/clauderic/react-sortable-hoc) used to implement the drag and drop feature
