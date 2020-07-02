@@ -56,14 +56,29 @@ const SortableList = sortableContainer(({ ...props }) => (
 ));
 
 function List(props) {
- 
+  // const [todos, setTodos] = useState(() => {
+  //   var restoredList = JSON.parse(localStorage.getItem("todoList"));
+  
+  //   if (!restoredList) {
+  //     restoredList = [
+  //       { content: "", isCompleted: false, id: uuidv4(), isFocused: false }
+  //     ];
+  //   }
+  //   return restoredList;
+  // });
+
+
+  // // save todos in one object
+  // useEffect(() => {
+  //   localStorage.setItem("todoList", JSON.stringify(todos));
+  // }, [todos]);
 
   // event handlers
   function handleKeyDown(e, i) {
     if (e.key === "Enter") {
       createTodoAtIndex(e, i);
     }
-    if (e.key === "Backspace" && todos[i].content === "") {
+    if (e.key === "Backspace" && props.todos[i].content === "") {
       e.preventDefault();
       return removeTodoAtIndex(i);
     }

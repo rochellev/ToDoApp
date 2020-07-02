@@ -37,30 +37,21 @@ const myTodos = [
     }
   ]
 ];
+
+
+
+
 function App() {
   // 2D array
-  const [todos, setTodos] = useState(() => {
-    var restoredList = JSON.parse(localStorage.getItem("todoList"));
-
-    if (!restoredList) {
-      restoredList = [
-        { content: "", isCompleted: false, id: uuidv4(), isFocused: false }
-      ];
-    }
-    return restoredList;
-  });
-
-  // save todos in one object
-  useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(todos));
-  }, [todos]);
+  const [todoGroup, setTodoGroup] = useState(myTodos);
+  console.log(todoGroup);
 
   return (
     <div className="app">
       <div className="header">
         <img src={logo} className="logo" alt="logo" />
       </div>
-      <List todos={todos} />
+      <List todos={todoGroup[0]} />
       <AboutMe />
     </div>
   );
